@@ -1,5 +1,5 @@
 const pageOrigin = window.location.origin
-const idprovider = "https://dev-sso.devhub.lrinternal.com"
+var idprovider = "https://dev-sso.devhub.lrinternal.com"
 const selfHostedEndpoint = "https://devmayank.com"
 const customDoamin = "account.devmayank.com"
 var cookieAssetEndpoint = idprovider
