@@ -12,8 +12,8 @@ if (!hostedDomain) {
 const options = {
     apikey: "1583819b-9792-43c4-b8bf-0b9fd2e239ae",
     endpoints: {
-        page : pageOrigin+ "/poc/custom/index.html",
-        signin : pageOrigin+ "/poc/custom/sign-in.html",
+        page : pageOrigin+ "/poc/hosted/index.html",
+        signin : pageOrigin+ "/poc/hosted/sign-in.html",
         session: hostedDomain+"/ssologin/session",
         validate: "https://devapi.lrinternal.com/identity/v2/auth/access_token/validate",
         account: "https://devapi.lrinternal.com/identity/v2/auth/account",
