@@ -1,3 +1,6 @@
+const pageOrigin = window.location.origin
+var idprovider = "https://dev-sso.devhub.lrinternal.com"
+var isCustomDomain = false
 var commonOptions = {};
 commonOptions.apiKey = "1583819b-9792-43c4-b8bf-0b9fd2e239ae";
 commonOptions.appName = "dev-sso";
@@ -8,7 +11,12 @@ commonOptions.formRenderDelay = '12'
 commonOptions.callbackType = "hash"
 commonOptions.customDomain = "account.devmayank.com"
 // commonOptions.sott ="<Get_Sott>";
-commonOptions.verificationUrl = encodeURIComponent(window.location); //Change as per requirement
+commonOptions.verificationUrl = encodeURIComponent(window.location);
+
+if (commonOptions.customDomain){
+	idprovider = "https://" +commonOptions.customDomain
+	isCustomDomain = true
+}
 
 function getParameterByName(name, url = window.location.href) {
 	name = name.replace(/[\[\]]/g, '\\$&');
@@ -64,7 +72,7 @@ function HandleSuccessResponse(response, event) {
 		return
 	}
 	//setItem('lr-session-token', regResponse.access_token);
-	window.location= "https://singlesignon.com/poc/storage/index.html"
+	window.location= pageOrigin+"/poc/storage/index.html"
 	return
 }
 
@@ -73,7 +81,9 @@ function HandleSuccessResponse(response, event) {
 
 
 LRObject.util.ready(function () {
-	LRObject.options.customDomain = "account.devmayank.com"
+	if (isCustomDomain){
+		LRObject.options.customDomain = commonOptions.customDomain
+	}
 	window.lr_raas_settings = window.lr_raas_settings || {};
 	console.log(window.lr_raas_settings)
 	LRObject.init("ssoLogin", ssologin_options);

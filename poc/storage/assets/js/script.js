@@ -1,16 +1,25 @@
-
+const pageOrigin = window.location.origin
+const idprovider = "https://dev-sso.devhub.lrinternal.com"
+const customDomain = "account.devmayank.com"
+if (customDomain) {
+    idprovider = `https://${customDomain}`;
+}
 const options = {
     apikey: "1583819b-9792-43c4-b8bf-0b9fd2e239ae",
     endpoints: {
-        page : window.location.origin+ "/poc/storage/index.html",
-        session: "https://account.devmayank.com/ssologin/session",
+        page : pageOrigin+ "/poc/storage/index.html",
+        session: idprovider+"/ssologin/session",
         validate: "https://devapi.lrinternal.com/identity/v2/auth/access_token/validate",
         account: "https://devapi.lrinternal.com/identity/v2/auth/account",
-        login: "https://account.devmayank.com/auth.aspx"
+        login: idprovider+"/auth.aspx"
     }
 }
 
-const sessionCheckIframe = "https://account.devmayank.com/ssologin/session?signin=https%3A%2F%2Faccount.devmayank.com%2Fauth.aspx%3Freturn_url%3Dhttps%253A%252F%252Ffederation.com%252Fpoc%252Fstorage%252Findex.html"
+const returnUrl = encodeURIComponent(options.endpoints.page)
+const signUrl = encodeURIComponent(`${options.endpoints.login}?return_url=${returnUrl}`)
+const sessionCheckIframe = `${options.endpoints.session}?signin=${signUrl}`
+
+//const sessionCheckIframe = "https://account.devmayank.com/ssologin/session?signin=https%3A%2F%2Faccount.devmayank.com%2Fauth.aspx%3Freturn_url%3Dhttps%253A%252F%252Ffederation.com%252Fpoc%252Fstorage%252Findex.html"
 // "https://account.devmayank.com/ssologin/session?signin=https%3A%2F%2Faccount.devmayank.com%2Fauth.aspx%3Freturn_url%3Dhttps%253A%252F%252Fsinglesignon.com%252Fpoc%252Fstorage%252Findex.html"
 
 document.addEventListener('alpine:init', () => {

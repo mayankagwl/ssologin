@@ -1,3 +1,4 @@
+const pageOrigin = window.location.origin
 var commonOptions = {};
 commonOptions.apiKey = "1583819b-9792-43c4-b8bf-0b9fd2e239ae";
 commonOptions.appName = "dev-sso";
@@ -64,7 +65,7 @@ function HandleSuccessResponse(response, event) {
 		return
 	}
 	//setItem('lr-session-token', regResponse.access_token);
-	window.location= "https://federation.com/poc/fedcm/index.html"
+	window.location= pageOrigin+"/poc/fedcm/index.html"
 	return
 }
 
