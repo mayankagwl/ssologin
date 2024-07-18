@@ -1,7 +1,7 @@
 const pageOrigin = window.location.origin
 var idprovider = "https://dev-sso.devhub.lrinternal.com"
 var hostedDomain = "https://devmayank.com"
-const customDoamin = "" //"account.devmayank.com"
+const customDoamin = "account.devmayank.com"
 if (customDoamin) {
     idprovider = `https://${customDoamin}`;
 }
