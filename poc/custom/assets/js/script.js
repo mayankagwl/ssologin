@@ -1,11 +1,6 @@
 const pageOrigin = window.location.origin
 var idprovider = "https://dev-sso.devhub.lrinternal.com"
-const selfHostedEndpoint = "https://devmayank.com"
-const customDoamin = "account.devmayank.com"
-var cookieAssetEndpoint = idprovider
-if (selfHostedEndpoint) {
-    cookieAssetEndpoint = selfHostedEndpoint;
-}
+const customDoamin = "" //"account.devmayank.com"
 if (customDoamin) {
     idprovider = `https://${customDoamin}`;
 }
@@ -15,11 +10,11 @@ const options = {
     endpoints: {
         page : pageOrigin+ "/poc/custom/index.html",
         signin : pageOrigin+ "/poc/custom/sign-in.html",
-        session: cookieAssetEndpoint+"/ssologin/session",
+        session: idprovider+"/ssologin/session",
         validate: "https://devapi.lrinternal.com/identity/v2/auth/access_token/validate",
         account: "https://devapi.lrinternal.com/identity/v2/auth/account",
         login: idprovider+"/auth.aspx",
-        consent: cookieAssetEndpoint+"/ssologin/consent"
+        consent: idprovider+"/ssologin/consent"
     }
 }
 
