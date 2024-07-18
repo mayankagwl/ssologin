@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    body{
+        overflow: hidden;
+    }
+</style>
+
+<body>
+    <!-- Hello world -->
+    <button
+        class="flex flex-row items-center space-x-2 w-full px-4 py-2 text-white text-sm font-semibold text-left bg-transparent hover:bg-blue-800 md:w-auto md:inline md:mt-0 md:ml-4 hover:bg-gray-200 focus:bg-blue-800 focus:outline-none focus:shadow-outline">
+        <span>Sign In</span>
+    </button>
+</body>
+<script>
+    parent.postMessage({ "hello": "World" }, "https://singlesignon.com/");
+</script>
+
+</html>
