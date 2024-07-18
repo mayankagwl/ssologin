@@ -72,8 +72,8 @@ function HandleSuccessResponse(response, event) {
 	if (!response.access_token) {
 		return
 	}
-	console.log(`${idprovider}/ssologin/setsafaritoken?token=${response.access_token}&callback=${encodeURIComponent(pageOrigin+"/poc/custom/index.html")}`)
-	window.location = `${idprovider}/ssologin/setsafaritoken?token=${response.access_token}&callback=${encodeURIComponent(pageOrigin+"/poc/custom/index.html")}`
+	console.log(`${idprovider}/ssologin/setsafaritoken?token=${response.access_token}&callback=${encodeURIComponent(pageOrigin+"/poc/hosted/index.html")}`)
+	window.location = `${idprovider}/ssologin/setsafaritoken?token=${response.access_token}&callback=${encodeURIComponent(pageOrigin+"/poc/hosted/index.html")}`
 	return
 }
 
