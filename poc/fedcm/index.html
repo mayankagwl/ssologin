@@ -39,26 +39,39 @@
     <div class="bg-gray-100 w-full">
         <div class="w-full text-white bg-main-color">
             <div
-                class="flex flex-col w-full px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+                class="flex flex-row w-full px-4 mx-auto justify-between items-center md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
                 <div class="p-4 flex flex-row items-center justify-between">
                     <a href="#"
-                        class="text-lg font-semibold tracking-widest uppercase rounded-lg focus:outline-none focus:shadow-outline">FEDCM
-                        API Demo
+                        class="md:text-lg text-sm font-semibold tracking-widest uppercase rounded-lg focus:outline-none focus:shadow-outline">Storage
+                        Access API Demo
                     </a>
                 </div>
-                <nav :class="{'flex': open, 'hidden': !open}" x-show="isLogedIn"
-                    class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
-                    <div @click.away="open = false" class="relative">
+                <nav :class="{'flex': open, 'hidden': !isLogedIn}" x-show="isLogedIn"
+                    class="flex-row pb-4 justify-end md:pb-0 hidden md:flex md:justify-end md:flex-row">
+                    <div @click.away="open = false" class="relative px-2">
                         <button @click="toggle"
                             class="flex flex-row items-center space-x-2 w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent hover:bg-blue-800 md:w-auto md:inline md:mt-0 md:ml-4 hover:bg-gray-200 focus:bg-blue-800 focus:outline-none focus:shadow-outline">
-                            <span>Account</span>
-                            <svg fill="currentColor" viewBox="0 0 20 20"
-                                :class="{'rotate-180': open, 'rotate-0': !open}"
-                                class="inline w-4 h-4 transition-transform duration-200 transform">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+                            <span class="md:block hidden">
+                                <span>Account</span>
+                                <svg fill="currentColor" viewBox="0 0 20 20"
+                                    :class="{'rotate-180': open, 'rotate-0': !open}"
+                                    class="inline w-4 h-4 transition-transform duration-200 transform">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+                            <span class="md:hidden rounded-lg focus:outline-none focus:shadow-outline">
+                                <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                                    <path x-show="!open" fill-rule="evenodd"
+                                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                                        clip-rule="evenodd"></path>
+                                    <path x-show="open" fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                            </span>
+
                         </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-100"
                             x-transition:enter-start="transform opacity-0 scale-95"
@@ -78,13 +91,13 @@
                         </div>
                     </div>
                 </nav>
-                <nav :class="{'flex': open, 'hidden': !open}" x-show="!isLogedIn"
-                    class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+                <nav :class="{'hidden': isLogedIn}" x-show="!isLogedIn"
+                    class="flex flex-row flex1-grow p-4 justify-end hidden md:flex md:justify-end md:flex-row">
                     <div @click.away="open = false" class="relative">
-                        <button @click.prevent="SignPopup"
-                            class="flex flex-row items-center space-x-2 w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent hover:bg-blue-800 md:w-auto md:inline md:mt-0 md:ml-4 hover:bg-gray-200 focus:bg-blue-800 focus:outline-none focus:shadow-outline">
-                            Sign In
-                        </button>
+                        <div class="iframe">
+
+                        </div>
+                        <iframe id="session" width="80" height="42"></iframe>
                     </div>
                 </nav>
             </div>
