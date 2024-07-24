@@ -37,7 +37,7 @@ console.log(sessionCheckIframe);
 
 document.addEventListener('alpine:init', () => {
     var iframe = document.getElementById("session")
-    ssoLoginUtil.initilizeParent();
+    //ssoLoginUtil.initilizeParent();
     Alpine.data('fedcmdemo', () => ({
         open: false,
         isLogedIn: false,
