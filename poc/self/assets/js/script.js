@@ -63,18 +63,18 @@ document.addEventListener('alpine:init', () => {
             }
             console.log({ accessToken })
             await _self.accessTokenListener(accessToken, true)
-            window.addEventListener('ssologin', async (ev) => {
-                console.log(ev.data);
-                if (!ev.data) {
+            window.addEventListener('ssologin', async (message) => {
+                console.log({message});
+                if (!message) {
                     return
-                } else if (ev.data.login && ev.data.login.token) {
-                    await _self.accessTokenListener(ev.data.login.token, false)
-                } else if (ev.data.logout) {
+                } else if (message.login && message.login.token) {
+                    await _self.accessTokenListener(message.login.token, false)
+                } else if (message.logout) {
                      _self.afterLogout();
-                }else if (ev.data.prompt && ev.data.prompt!=="granted") {
-                    if (ev.data.action==="logout") {
+                }else if (message.prompt && message.prompt!=="granted") {
+                    if (message.action==="logout") {
                         _self.afterLogout();
-                    }else if(ev.data.action==="prompt"){
+                    }else if(message.action==="prompt"){
                         
                     }
                 }

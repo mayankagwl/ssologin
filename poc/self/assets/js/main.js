@@ -1,5 +1,5 @@
 const pageOrigin = window.location.origin
-const pagepath = window.location.pathname.replace(/\/$/, "");
+const pagepath = "/poc/self"
 var idprovider = "https://dev-sso.devhub.lrinternal.com"
 var isCustomDomain = false
 var commonOptions = {};
