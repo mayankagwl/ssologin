@@ -64,7 +64,7 @@ document.addEventListener('alpine:init', () => {
             console.log({ accessToken })
             await _self.accessTokenListener(accessToken, true)
             window.addEventListener('ssologin', async (ev) => {
-                console.log({message:ev.detail});
+                console.log(message, JSON.stringify(ev.detail,null, 4));
                 if (!ev.detail) {
                     return
                 } else if (ev.detail.login && ev.detail.login.token) {
