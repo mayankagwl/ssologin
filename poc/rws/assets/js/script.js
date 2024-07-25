@@ -35,6 +35,8 @@ const sessionCheckIframe = `${options.endpoints.session}?signin=${consent}`
 
 console.log(sessionCheckIframe);
 
+var _self;
+
 document.addEventListener('alpine:init', () => {
     var iframe = document.getElementById("session")
     var signBtn = document.getElementById("sign-in")
@@ -53,7 +55,7 @@ document.addEventListener('alpine:init', () => {
         },
 
         async init() {
-            var _self = this
+            _self = this
             let accessToken = getParameterByName("token");
             if (accessToken) {
                 localStorage.setItem("LRTokenKey", accessToken);
