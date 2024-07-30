@@ -14,7 +14,7 @@ commonOptions.customDomain = "account.devmayank.com"
 commonOptions.isSSOLoginRedirect = true
 commonOptions.verificationUrl = encodeURIComponent(window.location);
 if (commonOptions.customDomain) {
-    idprovider = `https://${customDoamin}`;
+    idprovider = `https://${commonOptions.customDomain}`;
 }
 
 var ssologin_options= {};
@@ -51,7 +51,8 @@ document.addEventListener('alpine:init', () => {
         ssologin: {
             login:{
                 async onSuccess(response) {
-                    await _self.accessTokenListener(response.token)
+                    console.log({response})
+                    await _self.accessTokenListener(response)
                 },
                 onError(errors) {
                     console.error(errors);
@@ -73,9 +74,10 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             _self = this
+            signBtn.addEventListener("click", _self.signBtnClickListener);
              _self.LRObject.util.ready(function () {
                 if (commonOptions.customDomain){
-                    LRObject.options.customDomain = commonOptions.customDomain
+                    _self.LRObject.options.customDomain = commonOptions.customDomain
                 }
              })
             let accessToken = getParameterByName("token");
@@ -86,7 +88,6 @@ document.addEventListener('alpine:init', () => {
             } else {
                 accessToken = localStorage.getItem("LRTokenKey");
             }
-            console.log({ accessToken })
             let isvalid = await _self.accessTokenListener(accessToken)
             if (!isvalid) {
                 await _self.requestAccessStoragePermission()
@@ -98,7 +99,7 @@ document.addEventListener('alpine:init', () => {
                 if (resp.state === "granted") {
                     await _self.requestAccessStorageFor();
                 }else if (resp.state === "prompt") {
-                    signBtn.addEventListener("click", _self.signBtnClickListener);
+                    await _self.requestAccessStorageFor();
                 }
             } catch (error) {
                 console.error(error)
@@ -110,10 +111,10 @@ document.addEventListener('alpine:init', () => {
                 if ('requestStorageAccessFor' in document) {
                     await document.requestStorageAccessFor(idprovider)
                 }
-                _self.LRObject.init("ssoLogin", _self.ssologin.login);
             } catch (e) {
                 console.error(e)
             }
+            _self.LRObject.init("ssoLogin", _self.ssologin.login);
             if (onBtnClick) {
                 window.location.href = options.endpoints.signin;
             }
