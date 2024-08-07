@@ -56,6 +56,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             _self = this
+            signBtn.addEventListener("click", _self.signBtnClickListener);
             let accessToken = getParameterByName("token");
             if (accessToken) {
                 localStorage.setItem("LRTokenKey", accessToken);
@@ -92,7 +93,7 @@ document.addEventListener('alpine:init', () => {
                 if (resp.state === "granted") {
                     await _self.requestAccessStorageFor();
                 }else if (resp.state === "prompt") {
-                    signBtn.addEventListener("click", _self.signBtnClickListener);
+                    await _self.requestAccessStorageFor();
                 }
             } catch (error) {
                 console.error(error)

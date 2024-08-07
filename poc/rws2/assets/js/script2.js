@@ -39,15 +39,19 @@ const options = {
 var _self;
 
 document.addEventListener('alpine:init', () => {
-    var iframe = document.getElementById("session")
+    var loading = document.getElementById("loading")
     var signBtn = document.getElementById("sign-in")
     ssoLoginUtil.initilizeParent();
     Alpine.data('fedcmdemo', () => ({
         open: false,
         isLogedIn: false,
+        loading: true,
         profile: null,
         accessToken: null,
         LRObject :new LoginRadiusV2(commonOptions),
+        ShowSignInBtn() {
+            return !this.isLogedIn && !this.loading
+        },
         ssologin: {
             login:{
                 async onSuccess(response) {
@@ -92,6 +96,7 @@ document.addEventListener('alpine:init', () => {
             if (!isvalid) {
                 await _self.requestAccessStoragePermission()
             }
+            _self.loading = false
         },
         async requestAccessStoragePermission() {
             try {
