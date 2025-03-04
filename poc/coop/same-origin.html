@@ -1,0 +1,27 @@
+<!-- <?php
+
+//header("Cross-Origin-Opener-Policy: same-origin-allow-popups");
+
+header("Cross-Origin-Opener-Policy-Report-only: same-origin");
+//header("Cross-Origin-Resource-Policy: cross-origin");
+
+header("Location: https://thirdpartycookies.uk/poc/coop/end.php");
+?> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin">
+    <title>Same origin</title>
+</head>
+<body>
+    <script>
+        setTimeout(() => {
+            window.location.href = "https://thirdpartycookies.uk/poc/coop/end.html"
+        }, 2000);
+        
+    </script>
+</body>
+</html>

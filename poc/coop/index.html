@@ -1,0 +1,35 @@
+<!-- <?php
+
+header("Cross-Origin-Opener-Policy: same-origin-allow-popups");
+?> -->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+       
+        function OpenPopup() {
+            var _url = "https://letsgosso.uk/poc/coop/start.html";
+            const windowFeatures = "left=600,top=300,width=320,height=320,location=no";
+            var win = window.open(_url, '_blank', windowFeatures);
+        }
+
+        const channel = new BroadcastChannel('loginradius-social');
+        channel.addEventListener("message", (event) => { 
+            if (event.data){
+                document.getElementById("message").innerHTML = event.data
+            }
+        })
+
+
+    </script>
+
+</head>
+<body>
+<div id="message"></div>
+<a href="javascript:void(0);" onClick="OpenPopup();" >Open</a>
+</body>
+
+</html>

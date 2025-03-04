@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div id="opener"></div>
+</body>
+<script>
+   var result = (window.opener)?"Found": "Not Found";
+   document.getElementById("opener").innerHTML = result
+
+   const channel = new BroadcastChannel('loginradius-social');
+   channel.postMessage('Hello From BroadcastChannel');
+   window.close();
+</script>
+</html>
+
+
+
