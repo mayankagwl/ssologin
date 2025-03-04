@@ -8,7 +8,7 @@
    document.getElementById("opener").innerHTML = result
 
    const channel = new BroadcastChannel('loginradius-social');
-   channel.postMessage('Hello From BroadcastChannel');
+   channel.postMessage('Hello From BroadcastChannel:'+" window.opener:"+result);
    window.close();
 </script>
 </html>
